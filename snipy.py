@@ -58,7 +58,7 @@ class Snipy:
         if(len(bid_note) > 0):
             amt = self.extract_price_from_text(bid_note[0].text)
         if amt != -1 and float(amt) <= self.settings["max_bid"]:
-            self.driver.find_element_by_id("MaxBidId").send_keys(amt)
+            self.driver.find_element_by_id("MaxBidId").send_keys(self.settings["max_bid"])
             self.driver.find_element_by_id("bidBtn_btn").click()
             self.driver.find_element_by_id("confirm_button").click()
             return True
