@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 import json, time
 
-FP = webdriver.FirefoxProfile()
 START_URL = "https://signin.ebay.com/ws/eBayISAPI.dll?SignIn"
 BASE_URL = "https://www.ebay.com/itm/{}"
 
@@ -16,7 +15,7 @@ class Snipy:
         self.settings = {}
         with open("settings.json") as file:
             self.settings = json.loads(file.read())
-        self.driver = webdriver.Firefox(firefox_profile=FP)
+        self.driver = webdriver.Firefox()
         self.driver.set_page_load_timeout(self.settings["page_load_timeout"])
 
     def get_url(self, url, retries=None):
