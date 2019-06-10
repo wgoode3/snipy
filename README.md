@@ -1,7 +1,7 @@
 # snipy
 ebay bid sniping thing
 
-Before use be sure to modify:```email```, ```password```, ```item_id```, and ```max_bid``` to appropriate values in ```settings.json```.
+Before use be sure to modify: ```email```, ```password```, ```item_id```, and ```max_bid``` to appropriate values in ```settings.json```.
 
 ```json
 {

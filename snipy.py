@@ -22,7 +22,7 @@ class Snipy:
         if retries == None:
             retries = self.settings["page_load_retries"]
         if retries < 0:
-            raise Exception("too many failed attempts at connecting to: {url}".format(url))
+            raise Exception("too many failed attempts at connecting to: {}".format(url))
         try:
             self.driver.get(url)
             return
@@ -57,8 +57,9 @@ class Snipy:
         if(len(bid_note) > 0):
             amt = self.extract_price_from_text(bid_note[0].text)
         if amt != -1 and float(amt) <= self.settings["max_bid"]:
-            self.driver.find_element_by_id("MaxBidId").send_keys(self.settings["max_bid"])
+            self.driver.find_element_by_id("MaxBidId").send_keys(str(self.settings["max_bid"]))
             self.driver.find_element_by_id("bidBtn_btn").click()
+            time.sleep(5)
             self.driver.find_element_by_id("confirm_button").click()
             return True
         return False
@@ -68,7 +69,7 @@ class Snipy:
         endtime = self.get_end_datetime()
         time_to_end = endtime - int(time.time())
         time_to_bid = time_to_end - self.settings["time_before_bid"]
-        print("bidding in", time_to_bid, "seconds")
+        print("bidding in {} seconds".format(time_to_bid))
         time.sleep(time_to_bid)
         self.get_url(START_URL)
         self.login_to_ebay()
